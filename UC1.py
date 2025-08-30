@@ -5,7 +5,7 @@ car_inventory = [
     {"id": 1, "make": "Toyota", "model": "Camry", "year": 2021, "price": 56500},
     {"id": 2, "make": "Honda", "model": "Civic", "year": 2020, "price": 22000},
     {"id": 3, "make": "Ford", "model": "Mustang", "year": 2022, "price": 30000},
-    {"id": 4, "make": "Chevrolet", "model": "Cruze", "year": 2019, "price": 18000},
+    {"id": 4, "make": "Chevrolet", "model": "Cruze", "year": 2019, "price": 1800},
     {"id": 5, "make": "Nissan", "model": "Altima", "year": 2023, "price": 28000}
 ]
 
@@ -83,3 +83,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
