@@ -9,33 +9,23 @@ car_inventory = [
     {"id": 5, "make": "Nissan", "model": "Altima", "year": 2023, "price": 28000}
 ]
 
-# Function 1: Search cars by budget
-def search_by_budget(inventory, max_price):
-    """
-    Find and return cars that are within the given budget.
-    Use list comprehension to filter cars based on price.
-    """
-    # Filter cars where price is less than or equal to max_price
-    filtered_cars = [car for car in inventory if car['price'] <= max_price]
+# To Search cars by budget
+def budget_cars(inventory, maxprice):
+   filter_cars = [car for car in inventory if car['price'] <= maxprice]
     
-    # Display results
-    if filtered_cars:
-        print(f"\nCars within budget of Rs.{max_price:,}:")
+    if filter_cars:
+        print(f"\nCars within budget of Rs.{maxprice:,}:")
         print("-" * 50)
-        for car in filtered_cars:
+        for car in filter_cars:
             print(f"ID: {car['id']}, {car['year']} {car['make']} {car['model']} - Rs.{car['price']:,}")
     else:
-        print(f"\nNo cars found within the budget of Rs.{max_price:,}")
+        print(f"\nNo cars found within the budget of Rs.{maxprice:,}")
     
-    return filtered_cars
+    return filter_cars
 
-# Function 2: Save inventory to a file
+# Save inventory to a file
 def save_inventory(inventory, filename="car_inventory.json"):
-    """
-    Save the car inventory as a JSON file.
-    Use json.dump() with indent=4 for readability.
-    """
-    try:
+   try:
         with open(filename, 'w') as file:
             json.dump(inventory, file, indent=4)
         
@@ -48,39 +38,28 @@ def save_inventory(inventory, filename="car_inventory.json"):
 
 # Additional helper function to display all cars
 def display_cars(inventory):
-    """
-    Display all cars in the inventory.
-    """
     print("\nAll Available Cars:")
     print("-" * 50)
     for car in inventory:
         print(f"ID: {car['id']}, {car['year']} {car['make']} {car['model']} - Rs.{car['price']:,}")
 
-# Main Execution
+
 def main():
-    """
-    Call search_by_budget and save_inventory functions.
-    - Search for cars under a certain price
-    - Save the inventory to a file
-    """
-    print("=== Car Inventory Management System ===")
-    
-    # Display all available cars
+    print("Car Inventory System")
     display_cars(car_inventory)
     
-    # Search for cars under $25,000
+    # Search for cars under 25,000
     budget_cars = search_by_budget(car_inventory, 25000)
-    
     # Save the inventory to a JSON file
     saved_file = save_inventory(car_inventory)
-    
     # Additional functionality - show summary
-    print(f"\n=== Summary ===")
-    print(f"Total cars in inventory: {len(car_inventory)}")
-    print(f"Cars within $25,000 budget: {len(budget_cars)}")
+    print(f"\n Summary ")
+    print(f"Total cars: {len(car_inventory)}")
+    print(f"Cars within Rs.25,000 : {len(budget_cars)}")
     if saved_file:
         print(f"Inventory saved to: {saved_file}")
 
 if __name__ == "__main__":
     main()
+
 
