@@ -11,27 +11,22 @@ car_inventory = [
 
 # To Search cars by budget
 def budget_cars(inventory, maxprice):
-   filter_cars = [car for car in inventory if car['price'] <= maxprice]
-    
+    filter_cars = [car for car in inventory if car['price'] <= maxprice]
     if filter_cars:
         print(f"\nCars within budget of Rs.{maxprice:,}:")
-        print("-" * 50)
         for car in filter_cars:
             print(f"ID: {car['id']}, {car['year']} {car['make']} {car['model']} - Rs.{car['price']:,}")
     else:
         print(f"\nNo cars found within the budget of Rs.{maxprice:,}")
-    
     return filter_cars
 
 # Save inventory to a file
 def save_inventory(inventory, filename="car_inventory.json"):
-   try:
+    try:
         with open(filename, 'w') as file:
             json.dump(inventory, file, indent=4)
-        
         print(f"\nInventory successfully saved to {filename}")
         return filename
-    
     except Exception as e:
         print(f"Error saving inventory: {e}")
         return None
@@ -39,27 +34,22 @@ def save_inventory(inventory, filename="car_inventory.json"):
 # Additional helper function to display all cars
 def display_cars(inventory):
     print("\nAll Available Cars:")
-    print("-" * 50)
     for car in inventory:
-        print(f"ID: {car['id']}, {car['year']} {car['make']} {car['model']} - Rs.{car['price']:,}")
-
+        print(f"ID: {car['id']}, {car['year']} {car['model']} - Rs.{car['price']:,}")
 
 def main():
     print("Car Inventory System")
     display_cars(car_inventory)
-    
-    # Search for cars under 25,000
-    budget_cars = search_by_budget(car_inventory, 25000)
+    # Search for under Rs.25,000
+    budgeted_cars = budget_cars(car_inventory, 25000)
     # Save the inventory to a JSON file
     saved_file = save_inventory(car_inventory)
     # Additional functionality - show summary
-    print(f"\n Summary ")
+    print(f"\n---------Summary-------")
     print(f"Total cars: {len(car_inventory)}")
-    print(f"Cars within Rs.25,000 : {len(budget_cars)}")
+    print(f"Cars within Rs.25,000 : {len(budgeted_cars)}")
     if saved_file:
         print(f"Inventory saved to: {saved_file}")
 
 if __name__ == "__main__":
     main()
-
-
